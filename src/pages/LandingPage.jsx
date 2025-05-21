@@ -4,6 +4,8 @@ import Home from '../components/Home';
 import DoctorProfile from '../components/DoctorProfile';
 import DoctorSpeciality from '../components/DoctorSpeciality';
 import WhyChooseUs from '../components/WhyChooseUs';
+import SocialMedia from '../components/SocialMedia';
+import Testimonials from '../components/Testimonials';
 
 const LandingPage = () => {
   return (
@@ -26,6 +28,13 @@ const LandingPage = () => {
 
         {/* Why Choose Us Section */}
         <WhyChooseUs />
+
+
+        {/* Social Media Section */}
+        <SocialMedia />
+        
+        {/* Testimonials Section */}
+        <Testimonials />
       </main>
     </div>
   );
