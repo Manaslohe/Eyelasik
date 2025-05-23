@@ -61,7 +61,7 @@ const SocialMediaSection = () => {
                 md:h-[380px] lg:h-[700px] 
                 w-auto md:w-[450px] lg:w-[1450px]
                 object-contain object-bottom pointer-events-none 
-                absolute bottom-10 -right-5 
+                absolute bottom-12 -right-17 
                 transform translate-y-12 md:translate-x-16"
             />
           </div>

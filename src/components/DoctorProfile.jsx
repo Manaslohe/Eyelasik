@@ -15,7 +15,7 @@ const AchievementCard = ({ icon, title, description }) => {
 
 const DoctorProfile = () => {
   return (
-    <div className="bg-[#013A83] py-2">
+    <div className="py-2">
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row items-center">
           {/* Left side with doctor image */}

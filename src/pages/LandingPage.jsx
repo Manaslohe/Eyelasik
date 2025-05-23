@@ -6,23 +6,31 @@ import DoctorSpeciality from '../components/DoctorSpeciality';
 import WhyChooseUs from '../components/WhyChooseUs';
 import SocialMedia from '../components/SocialMedia';
 import Testimonials from '../components/Testimonials';
+import Footer from '../components/Footer';
 
 const LandingPage = () => {
   return (
     <div className="flex flex-col min-h-screen bg-[#013A83] text-white">
-      {/* The Header is now included within the LandingPage component */}
-      <Header />
-      
-      {/* Main content area with all sections in order */}
+     
+
       <main className="flex-grow">
-        {/* Hero Section (from Home component) */}
-        <Home />
-        
-        {/* Note: We remove DoctorProfile from Home.jsx since we'll include it directly here */}
-        
-        {/* Doctor Profile Section */}
-        <DoctorProfile />
-        
+          <div
+            style={{
+              backgroundImage: "url('/herobg.png')",
+              backgroundRepeat: 'repeat-y',
+              backgroundSize: 'cover',
+              backgroundPosition: 'top center',
+              opacity: 1, // Reduced opacity
+            }}
+          >
+            {/* Hero Section (from Home component) */}
+           <Header />
+          <Home />
+          
+          {/* Doctor Profile Section */}
+          <DoctorProfile />
+        </div>
+
         {/* Doctor Speciality Section */}
         <DoctorSpeciality />
 
@@ -33,8 +41,19 @@ const LandingPage = () => {
         {/* Social Media Section */}
         <SocialMedia />
         
-        {/* Testimonials Section */}
-        <Testimonials />
+        {/* Testimonials and Footer with shared background */}
+        <div
+          style={{
+            backgroundImage: "url('/testimonial background.png')",
+            backgroundRepeat: 'repeat-y',
+            backgroundSize: 'cover',
+            backgroundPosition: 'top center',
+          }}
+        >
+          <Testimonials />
+          <div className="w-full h-0.5 bg-white/80" />
+          <Footer />
+        </div>
       </main>
     </div>
   );
