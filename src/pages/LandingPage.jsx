@@ -11,25 +11,13 @@ import Footer from '../components/Footer';
 const LandingPage = () => {
   return (
     <div className="flex flex-col min-h-screen bg-[#013A83] text-white">
-     
-
       <main className="flex-grow">
-          <div
-            style={{
-              backgroundImage: "url('/herobg.png')",
-              backgroundRepeat: 'repeat-y',
-              backgroundSize: 'cover',
-              backgroundPosition: 'top center',
-              opacity: 1, // Reduced opacity
-            }}
-          >
             {/* Hero Section (from Home component) */}
-           <Header />
-          <Home />
-          
-          {/* Doctor Profile Section */}
-          <DoctorProfile />
-        </div>
+            <Header />
+            <Home />
+            
+            {/* Doctor Profile Section */}
+            <DoctorProfile />
 
         {/* Doctor Speciality Section */}
         <DoctorSpeciality />

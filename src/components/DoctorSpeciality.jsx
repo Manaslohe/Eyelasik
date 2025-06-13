@@ -5,14 +5,14 @@ const SpecialityItem = ({ icon, title, description }) => {
   return (
     <div className="bg-white/[0.16] text-white rounded-md p-3 md:p-4 flex items-center overflow-hidden mb-4 w-full md:w-[800px] border border-white/60">
       <div className="flex-shrink-0">
-        <div className="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center">
+        <div className="w-8 h-8 md:w-16 md:h-16 flex items-center justify-center">
           {icon}
         </div>
       </div>
-      <div className="flex-1 flex items-center pl-2">
-        <h2 className="text-xl md:text-2xl lg:text-4xl font-light mr-4 md:mr-6 w-24 md:w-48">{title}</h2>
+      <div className="flex-1 flex items-center">
+        <h2 className="text-[clamp(1rem,4vw,1.5rem)] md:text-2xl lg:text-4xl font-light mr-4 md:mr-6 w-17 md:w-48">{title}</h2>
         <div className="h-16 w-[1px] bg-white/40 mr-4 md:mr-6"></div>
-        <p className="text-sm md:text-base lg:text-lg flex-1">{description}</p>
+        <p className="text-[clamp(0.85rem,3vw,1.125rem)] md:text-base lg:text-lg flex-1">{description}</p>
       </div>
     </div>
   );
