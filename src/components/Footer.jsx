@@ -1,20 +1,27 @@
 import React, { useState } from 'react';
 import AppointmentModal from './AppointmentModal';
+import MobileFooter from './MobileFooter';
 
 const Footer = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <footer className="w-full bg-no-repeat bg-cover bg-center pt-12 pb-16">
+    <footer className="w-full bg-no-repeat bg-cover bg-center pt-6 md:pt-12 pb-6 md:pb-16 bg-[#003B95]">
       <AppointmentModal open={open} onClose={() => setOpen(false)} />
-      <div className="w-full px-0">
+      <div className="w-full">
         <div
-          className="w-full  p-0"
+          className="w-full"
           style={{
             background: 'linear-gradient(90deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.00) 100%)'
           }}
         >
-          <div className="max-w-7xl mx-auto px-4 py-8 flex flex-col md:flex-row justify-between gap-10 text-white">
+          {/* Mobile/Tablet Footer */}
+          <div className="lg:hidden max-w-7xl mx-auto px-4 py-4 md:py-8">
+            <MobileFooter onOpenModal={() => setOpen(true)} />
+          </div>
+
+          {/* Desktop Footer */}
+          <div className="hidden lg:flex max-w-7xl mx-auto px-4 py-8 justify-between gap-10 text-white">
             {/* Who We Are */}
             <div className="flex-1 min-w-[220px]">
               <h2 className="text-2xl font-semibold mb-2">Who We Are</h2>

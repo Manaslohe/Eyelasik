@@ -34,20 +34,20 @@ const Home = () => {
       {/* Main content with relative position to stay above the background */}
       <div className="relative z-10">
         {/* Main Heading */}
-        <h1 className="text-8xl font-bold mb-5 pt-4">
+        <h1 className="text-4xl md:text-8xl font-bold mb-5 pt-4">
           Complete <span className="text-[#3B9BFF]">Vision</span> Care
         </h1>
         
         {/* Subtitle */}
-        <p className="text-xl mb-16 max-w-4xl mx-auto">
+        <p className="text-lg md:text-xl mb-8 md:mb-16 max-w-4xl mx-auto px-4">
           From Checkups to Clarity. Advanced Solutions for Every Eye. Complete Vision Care, All in One Place.
         </p>
         
-        {/* CTA Button - moved above the glow/hero image */}
-        <div className="mb-18 flex justify-center relative z-30">
+        {/* CTA Button */}
+        <div className="mb-12 md:mb-18 flex justify-center relative z-30">
           <button
             id="book-appointment-btn"
-            className="px-14 py-3 rounded-full text-xl font-medium shadow-lg transition-all duration-300 cursor-pointer
+            className="px-8 md:px-14 py-2 md:py-3 rounded-full text-lg md:text-xl font-medium shadow-lg transition-all duration-300 cursor-pointer
               bg-gradient-to-r from-[#007FFF] to-[#013A83]
               border border-white/80
               text-white
@@ -66,11 +66,11 @@ const Home = () => {
             BOOK YOUR APPOINTMENT
           </button>
         </div>
-      
+
         {/* Services Section with Eye Image Center */}
         <div className="relative max-w-5xl mx-auto">
-          {/* Center Eye Image and Text with radial glow effect */}
-          <div className="relative">
+          {/* Eye Image and glow effects */}
+          <div className="relative mb-8 md:mb-0">
             {/* Bright blue glow effect behind the image */}
             <div className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
               <div className="w-[500px] h-[500px] rounded-full bg-[#1e90ff] opacity-60 blur-3xl"></div>
@@ -95,8 +95,69 @@ const Home = () => {
             </div>
           </div>
           
-          {/* Services Cards - using ServiceCard component */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Services Cards - Mobile: 2 columns grid, Desktop: absolute positioning */}
+          <div className="md:hidden grid grid-cols-2 gap-4 px-4 mt-8">
+            <ServiceCard 
+              position=""
+              icon={
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 md:h-12 md:w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+              }
+              title="LASIK & Refractive Surgery"
+              description="Advanced vision correction for a glasses-free life."
+            />
+            
+            <ServiceCard 
+              position=""
+              icon={
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 md:h-12 md:w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+              }
+              title="Dry Eye & Ocular Surface Treatment"
+              description="Relieving irritation and ensuring comfort with advanced eye surface care."
+            />
+            
+            <ServiceCard 
+              position=""
+              icon={
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 md:h-12 md:w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              }
+              title="Cornea & Transplants"
+              description="Restoring clarity through expert cornea care and transplants."
+            />
+            
+            <ServiceCard 
+              position=""
+              icon={
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 md:h-12 md:w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                </svg>
+              }
+              title="General Eye Care"
+              description="Comprehensive eye health services for all ages and needs."
+            />
+            
+            <ServiceCard 
+              position=""
+              icon={
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 md:h-12 md:w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              }
+              title="Pediatric & Glaucoma"
+              description="Specialized eye care for children and expert management of glaucoma."
+            />
+          </div>
+
+          {/* Desktop layout - hidden on mobile */}
+          <div className="hidden md:block">
+            {/* Original absolutely positioned cards */}
             {/* LASIK Card - Top Left */}
             <ServiceCard 
               position="top-10 left-0 md:-left-16"
@@ -161,8 +222,8 @@ const Home = () => {
           </div>
         </div>
         
-        {/* Add more space below the services section to accommodate the lowered card */}
-        <div className="h-80"></div>
+        {/* Spacing for bottom cards */}
+        <div className="h-20 md:h-80"></div>
       </div>
     </div>
   );

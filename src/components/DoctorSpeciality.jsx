@@ -3,16 +3,16 @@ import { BookOpen, Users, Maximize, Briefcase, Award } from 'lucide-react';
 
 const SpecialityItem = ({ icon, title, description }) => {
   return (
-    <div className="bg-white/[0.16] text-white rounded-md p-4 flex items-center overflow-hidden mb-4 w-[800px] border border-white/60">
+    <div className="bg-white/[0.16] text-white rounded-md p-3 md:p-4 flex items-center overflow-hidden mb-4 w-full md:w-[800px] border border-white/60">
       <div className="flex-shrink-0">
-        <div className="w-16 h-16 flex items-center justify-center">
+        <div className="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center">
           {icon}
         </div>
       </div>
       <div className="flex-1 flex items-center pl-2">
-        <h2 className="text-4xl font-light mr-6 w-48">{title}</h2>
-        <div className="h-16 w-[1px] bg-white/40 mr-6"></div>
-        <p className="text-lg flex-1">{description}</p>
+        <h2 className="text-xl md:text-2xl lg:text-4xl font-light mr-4 md:mr-6 w-24 md:w-48">{title}</h2>
+        <div className="h-16 w-[1px] bg-white/40 mr-4 md:mr-6"></div>
+        <p className="text-sm md:text-base lg:text-lg flex-1">{description}</p>
       </div>
     </div>
   );
@@ -48,30 +48,30 @@ const DoctorSpeciality = () => {
   ];
 
   return (
-    <div className="bg-[#013A83] relative z-10">
+    <div className="bg-[#013A83] relative z-[0] mt-6 pb-112 md:pb-0">
       <div className="container mx-auto px-4">
-        <div className="relative">
-          {/* Title and divider section */}
-          <div className="mb-12 relative z-20">
-            <h2 className="text-6xl font-bold text-white pl-4">
+        <div className="relative flex flex-col lg:block">
+          {/* Title section */}
+          <div className="mb-8 md:mb-12 relative z-20">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white pl-2 md:pl-4">
               Our <span className="text-blue-300">Speciality</span>
             </h2>
           </div>
 
           {/* Image section */}
-          <div className="w-full flex justify-end -mt-88">
-            <div className="relative w-5/5">
+          <div className="w-full absolute top-0 left-0 h-full lg:relative lg:flex lg:justify-end lg:-mt-88 lg:order-none">
+            <div className="relative w-full lg:w-5/5 h-full">
               <img 
                 src="/speciality.png" 
                 alt="Eye Speciality" 
-                className="w-full h-auto relative"
+                className="w-full h-full object-cover opacity-15 lg:opacity-100 lg:h-auto lg:relative"
               />
             </div>
           </div>
 
           {/* Text section */}
-          <div className="absolute top-32 left-0 w-4/5 z-10">
-            <div className="space-y-4 pr-4">
+          <div className="relative z-10 lg:absolute lg:top-32 lg:left-0 w-full lg:w-4/5">
+            <div className="space-y-4">
               {profileData.map((item, index) => (
                 <SpecialityItem
                   key={index}

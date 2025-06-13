@@ -1,4 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "../components/ui/carousel";
 
 const Testimonials = () => {
   const testimonials = [
@@ -60,61 +67,8 @@ const Testimonials = () => {
     }
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState('next');
-  const [isAnimating, setIsAnimating] = useState(false);
-  
-  // Calculate the indices of the 3 visible testimonials
-  const visibleTestimonials = [
-    testimonials[currentIndex % testimonials.length],
-    testimonials[(currentIndex + 1) % testimonials.length],
-    testimonials[(currentIndex + 2) % testimonials.length]
-  ];
-
-  // Auto-rotate testimonials
-  useEffect(() => {
-    const interval = setInterval(() => {
-      handleNextSlide();
-    }, 5000); // Change slides every 5 seconds
-    
-    return () => clearInterval(interval);
-  }, [currentIndex]);
-
-  const handleNextSlide = () => {
-    if (isAnimating) return;
-    
-    setDirection('next');
-    setIsAnimating(true);
-    setTimeout(() => {
-      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-      setIsAnimating(false);
-    }, 500);
-  };
-
-  const handlePrevSlide = () => {
-    if (isAnimating) return;
-    
-    setDirection('prev');
-    setIsAnimating(true);
-    setTimeout(() => {
-      setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-      setIsAnimating(false);
-    }, 500);
-  };
-
-  // Dynamic classes for animation
-  const slideClasses = (index) => {
-    if (!isAnimating) return "";
-    
-    if (direction === 'next') {
-      return index === 0 ? "animate-slide-out-left" : "animate-slide-in-right";
-    } else {
-      return index === 2 ? "animate-slide-out-right" : "animate-slide-in-left";
-    }
-  };
-
   return (
-    <div className="pt-0 pb-20 px-4 text-white relative">
+    <div className="pt-0 pb-20 px-2 sm:px-4 text-white relative">
       {/* Background image with reduced opacity */}
       <div
         aria-hidden="true"
@@ -128,41 +82,37 @@ const Testimonials = () => {
         }}
       />
       <div className="relative z-10">
-        <h1 className="text-center text-5xl md:text-6xl mb-16 font-medium">
+        <h1 className="text-center text-4xl sm:text-5xl md:text-6xl mb-8 sm:mb-16 font-medium">
           <span className="text-white">Their Words,</span>
           <span className="text-[#3a96ef]"> Our Pride</span>
         </h1>
 
-        <div className="w-[90%] max-w-[1600px] mx-auto relative">
-          <button 
-            className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 bg-white/20 hover:bg-white/40 
-                      w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-300"
-            onClick={handlePrevSlide}
-          >
-            &#10094;
-          </button>
-          
-          <div className="flex justify-center gap-4 px-8 overflow-hidden">
-            {visibleTestimonials.map((testimonial, index) => (
-              <div 
-                key={index} 
-                className={`relative flex-shrink-0 w-full max-w-md ${slideClasses(index)}`}
-                style={{ 
-                  background: "url('/testi.png')",
-                  backgroundSize: 'contain',
-                  backgroundRepeat: 'no-repeat',
-                  backgroundPosition: 'center',
-                  minHeight: '450px',
-                  padding: '12px',
-                  position: 'relative'  // Added for absolute positioning of date/location
-                }}
-              >
-                <div className="p-6 flex flex-col h-full">
-                  <div className="flex flex-col items-end">
-                    <div className="flex items-start mb-4 w-full justify-between">
+        <Carousel 
+          className="w-full sm:w-[90%] max-w-[1600px] mx-auto"
+          opts={{
+            align: "start",
+            containScroll: "trimSnaps"
+          }}
+        >
+          <CarouselContent className="-ml-2 sm:-ml-4">
+            {testimonials.map((testimonial, index) => (
+              <CarouselItem key={index} className="pl-2 sm:pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
+                <div 
+                  className="relative flex-shrink-0 w-full transform transition-transform duration-300 hover:scale-[1.02]"
+                  style={{ 
+                    background: "url('/testi.png')",
+                    backgroundSize: 'contain',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'center',
+                    minHeight: '400px',
+                    padding: '12px',
+                  }}
+                >
+                  <div className="p-4 sm:p-6 flex flex-col h-full">
+                    <div className="flex items-start space-x-4 sm:space-x-6">
                       <div 
-                        className="w-40 h-40 text-[#1E88E5] flex items-center 
-                                 justify-center text-5xl font-medium relative"
+                        className="w-28 h-28 sm:w-40 sm:h-40 text-[#1E88E5] flex items-center 
+                                 justify-center text-4xl sm:text-5xl font-medium relative flex-shrink-0"
                         style={{
                           backgroundImage: "url('/testi2.png')",
                           backgroundSize: 'cover',
@@ -170,70 +120,41 @@ const Testimonials = () => {
                         }}
                       >
                         <span className="z-10 relative">{testimonial.initial}</span>
-                        <div className="absolute inset-0"></div>
                       </div>
-                      <div className="w-2/3 pt-12 pl-12">
-                        <h3 className="font-medium text-xl text-nowrap">{testimonial.name}</h3>
+                      <div className="flex-1 pt-6 sm:pt-12">
+                        <h3 className="font-medium text-lg sm:text-xl break-words sm:text-nowrap">{testimonial.name}</h3>
                         <p className="text-white/80 text-sm italic">{testimonial.role}</p>
-                        <div className="w-full h-[1px] bg-white/30 my-3"></div>
-                        <p className="text-lg leading-relaxed">{testimonial.text}</p>
+                        <div className="w-full h-[1px] bg-white/30 my-2 sm:my-3"></div>
+                        <p className="text-sm sm:text-lg leading-relaxed">{testimonial.text}</p>
                       </div>
                     </div>
-                  </div>
 
-                  <div className="absolute bottom-30 left-6 right-6 flex justify-between text-base text-white/90">
-                    <div className="flex items-center">
-                      <svg className="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M12 6V12L16 14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                      {testimonial.date}
-                    </div>
-                    <div className="mr-4 flex items-center">
-                      <svg className="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M19.5 10C19.5 15.2467 12 20 12 20C12 20 4.5 15.2467 4.5 10C4.5 6.13401 7.86401 3 12 3C16.136 3 19.5 6.13401 19.5 10Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                      {testimonial.location}
+                    <div className="absolute bottom-6 sm:bottom-8 left-6 right-6 flex justify-between text-sm sm:text-base text-white/90">
+                      <div className="flex items-center">
+                        <svg className="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M12 6V12L16 14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                        {testimonial.date}
+                      </div>
+                      <div className="mr-4 flex items-center">
+                        <svg className="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M19.5 10C19.5 15.2467 12 20 12 20C12 20 4.5 15.2467 4.5 10C4.5 6.13401 7.86401 3 12 3C16.136 3 19.5 6.13401 19.5 10Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                        {testimonial.location}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </CarouselItem>
             ))}
+          </CarouselContent>
+          <div className="hidden sm:block">
+            <CarouselPrevious className="absolute -left-4 top-1/2 -translate-y-1/2" />
+            <CarouselNext className="absolute -right-4 top-1/2 -translate-y-1/2" />
           </div>
-          
-          <button 
-            className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 bg-white/20 hover:bg-white/40
-                      w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-300"
-            onClick={handleNextSlide}
-          >
-            &#10095;
-          </button>
-        </div>
-        
-        <div className="flex justify-center mt-4 gap-2">
-          {testimonials.map((_, index) => {
-            // Check if this dot represents one of the visible testimonials
-            const isActive = index >= currentIndex && index < currentIndex + 3 || 
-                            (currentIndex + 3 > testimonials.length && index < (currentIndex + 3) % testimonials.length);
-            
-            return (
-              <span 
-                key={index} 
-                className={`w-3 h-3 rounded-full cursor-pointer transition-colors duration-300
-                          ${isActive ? 'bg-white' : 'bg-white/30'}`}
-                onClick={() => {
-                  if (index < currentIndex) {
-                    setDirection('prev');
-                  } else {
-                    setDirection('next');
-                  }
-                  setCurrentIndex(index);
-                }}
-              />
-            );
-          })}
-        </div>
+        </Carousel>
       </div>
     </div>
   );
