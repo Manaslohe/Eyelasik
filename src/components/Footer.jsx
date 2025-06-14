@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import AppointmentModal from './AppointmentModal';
 import MobileFooter from './MobileFooter';
+import '@fontsource/montserrat-alternates';
+import '@fontsource/montserrat-alternates/400.css';
+import '@fontsource/montserrat-alternates/500.css';
+import '@fontsource/montserrat-alternates/700.css';
 
 const Footer = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <footer className="w-full bg-no-repeat bg-cover bg-center pt-6 md:pt-12 pb-6 md:pb-16 bg-[#003B95]">
+    <footer className="w-full bg-no-repeat bg-cover bg-center pt-6 md:pt-12 pb-6 md:pb-16 bg-[#003B95] font-['Montserrat_Alternates']">
       <AppointmentModal open={open} onClose={() => setOpen(false)} />
       <div className="w-full">
         <div
