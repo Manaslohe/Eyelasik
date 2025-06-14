@@ -1,24 +1,30 @@
 import React, { useState } from 'react';
 import '@fontsource/montserrat-alternates';
 
-// Modal component
+// Modal Component
 const Modal = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null;
   
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 md:hidden font-['Montserrat_Alternates'] animate-modalIn"
+      className="fixed inset-0 z-50 flex items-center justify-center p- md:p-4 md:hidden"
       onClick={onClose}
     >
-      <div className="absolute inset-0 bg-black/60 animate-modalIn" />
       <div 
-        className="relative bg-white/20 backdrop-blur-md border-2 border-white/30 rounded-2xl p-6 w-full max-w-sm animate-modalContentIn"
+        className="absolute inset-0 bg-black/60 transition-opacity duration-300 ease-in-out"
+        style={{animation: 'fadeIn 0.3s ease-out'}}
+      />
+      <div 
+        className="relative bg-white/20 backdrop-blur-md border-2 border-white/30 rounded-2xl p-2 w-[100%] md:w-full max-w-sm
+        transition-all duration-300 ease-out transform"
         onClick={e => e.stopPropagation()}
+        style={{animation: 'slideIn 0.3s ease-out'}}
       >
         {children}
         <button 
+          className="mt-4 text-white bg-white/20 px-4 py-2 rounded-lg w-full transition-all duration-200 
+          hover:bg-white/30 active:scale-95 hover:scale-[1.02]"
           onClick={onClose}
-          className="mt-4 text-white bg-white/20 px-4 py-2 rounded-lg w-full transition-all duration-200 hover:bg-white/30 active:scale-95"
         >
           Close
         </button>
@@ -27,6 +33,26 @@ const Modal = ({ isOpen, onClose, children }) => {
   );
 };
 
+// Add animation keyframes as a style tag at the top of your component
+const style = document.createElement('style');
+style.innerHTML = `
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes slideIn {
+    from { 
+      opacity: 0;
+      transform: translateY(20px) scale(0.95);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+`;
+document.head.appendChild(style);
+
 // Achievement/credential card component
 const AchievementCard = ({ icon, title, description }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,7 +60,7 @@ const AchievementCard = ({ icon, title, description }) => {
   return (
     <>
       <div 
-        className="bg-white/15 backdrop-blur-sm border-white/30 rounded-2xl p-3 md:p-4 flex flex-col items-center text-center h-[180px] md:h-full border-2 md:cursor-default cursor-pointer"
+        className="bg-white/15 backdrop-blur-sm border-white/30 rounded-2xl p-3 px-2 md:px-4 md:pb-4 md:pt-0 flex flex-col items-center text-center h-[160px] md:h-full border-2 cursor-pointer md:cursor-default"
         onClick={() => window.innerWidth < 768 && setIsModalOpen(true)}
       >
         <div className="mt-0 mb-0 w-12 md:w-14 h-12 md:h-14">
@@ -143,58 +169,65 @@ const DoctorProfile = () => {
             <hr className="border-t border-white/60 my-6 w-full" />
             
             {/* Achievements/credentials grid */}
-            <div className="w-[90%] md:w-full mx-auto">
-              <div className="grid grid-cols-3 gap-2 md:gap-4">
+            <div className="w-[80%] md:w-full mx-auto">
+              <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4">
                 {/* First 6 cards */}
-                <AchievementCard
-                  icon="/icons/Post-Graduation.png"
-                  title="Post-Graduation"
-                  description="Completed MS Ophthalmology from Mahatma Gandhi Memorial Medical College, Indore. Academic Excellence"
-                />
-                
-                <AchievementCard
-                  icon="/icons/Academic-excellence.png"
-                  title="Academic Excellence"
-                  description="Winner of Dr. Vimal J.S. Mulkhandale Award for Best Free Paper at SIOS 2012"
-                />
-                
-                <AchievementCard
-                  icon="/icons/Gold-Medal.png"
-                  title="Gold Medal Recognition"
-                  description="Received Excellence in Physiology Award (Dr. Vimal Jayram Thakur Gold Medal)"
-                />
-                
-                <AchievementCard
-                  icon="/icons/Professional-training.png"
-                  title="Professional Training"
-                  description="Trained and worked at several reputed eye hospitals across India"
-                />
-                
-                <AchievementCard
-                  icon="/icons/Fellowship in Cornea & Refractive.png"
-                  title="Fellowship in Cornea & Refractive"
-                  description="Fellowship in Cornea, Ocular Surface & Refractive Surgery (C.H. Nagri Eye Hospital, Ahmedabad)"
-                />
-                
-                <AchievementCard
-                  icon="/icons/Phacoemulsification Training.png"
-                  title="Phacoemulsi-fication Training"
-                  description="Underwent advanced cataract surgery training at Dr. Shroff's Charity Eye Hospital, New Delhi"
-                />
+                <div className="contents sm:col-span-3 md:col-span-4">
+                  {/* First 6 AchievementCards */}
+                  <AchievementCard
+                    icon="/icons/Post-Graduation.png"
+                    title="Post-Graduation"
+                    description="Completed MS Ophthalmology from Mahatma Gandhi Memorial Medical College, Indore. Academic Excellence"
+                  />
+                  
+                  <AchievementCard
+                    icon="/icons/Academic-excellence.png"
+                    title="Academic Excellence"
+                    description="Winner of Dr. Vimal J.S. Mulkhandale Award for Best Free Paper at SIOS 2012"
+                  />
+                  
+                  <AchievementCard
+                    icon="/icons/Gold-Medal.png"
+                    title="Gold Medal Recognition"
+                    description="Received Excellence in Physiology Award (Dr. Vimal Jayram Thakur Gold Medal)"
+                  />
+                  
+                  <AchievementCard
+                    icon="/icons/Professional-training.png"
+                    title="Professional Training"
+                    description="Trained and worked at several reputed eye hospitals across India"
+                  />
+                  
+                  <AchievementCard
+                    icon="/icons/Fellowship in Cornea & Refractive.png"
+                    title="Fellowship in Cornea & Refractive"
+                    description="Fellowship in Cornea, Ocular Surface & Refractive Surgery (C.H. Nagri Eye Hospital, Ahmedabad)"
+                  />
+                  
+                  <AchievementCard
+                    icon="/icons/Phacoemulsification Training.png"
+                    title="Phacoemulsi-fication Training"
+                    description="Underwent advanced cataract surgery training at Dr. Shroff's Charity Eye Hospital, New Delhi"
+                  />
+                </div>
                 
                 {/* Last 2 cards centered */}
-                <div className="col-span-3 flex justify-center gap-2 md:gap-4">
-                  <div className="w-[calc(66.66%-0.5rem)] md:w-[calc(66.66%-1rem)] flex justify-center gap-2 md:gap-4">
-                    <AchievementCard
-                      icon="/icons/Cataract Traineeship.png"
-                      title="Cataract Traineeship"
-                      description="Completed cataract training at Mahatme Eye Bank & Hospital, Nagpur"
-                    />
-                    <AchievementCard
-                      icon="/icons/Excellence in Vision Correction.png"
-                      title="Excellence in Vision Correction"
-                      description="Performed over 10,000 cataract surgeries and 2,000 LASIK and Trans PRK procedures with proven expertise"
-                    />
+                <div className="contents sm:col-span-3 md:col-span-4">
+                  <div className="col-span-3 col-start-1 flex justify-center gap-3 md:gap-4 md:contents">
+                    <div className="w-[calc(33.33%-0.5rem)] md:w-full md:col-start-auto">
+                      <AchievementCard
+                        icon="/icons/Cataract Traineeship.png"
+                        title="Cataract Traineeship"
+                        description="Completed cataract training at Mahatme Eye Bank & Hospital, Nagpur"
+                      />
+                    </div>
+                    <div className="w-[calc(33.33%-0.5rem)] md:w-full md:col-start-auto">
+                      <AchievementCard
+                        icon="/icons/Excellence in Vision Correction.png"
+                        title="Excellence in Vision Correction"
+                        description="Performed over 10,000 cataract surgeries and 2,000 LASIK and Trans PRK procedures with proven expertise"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
