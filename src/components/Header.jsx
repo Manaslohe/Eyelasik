@@ -28,14 +28,18 @@ function Header() {
           </button>
         </div>
         <ul className={`
-          overflow-hidden transition-all duration-500 ease-in-out text-center
-          ${isMenuOpen ? 'max-h-[300px] opacity-100 scale-y-100' : 'max-h-0 opacity-0 scale-y-95'}
-          lg:max-h-none lg:opacity-100 lg:overflow-visible lg:text-left lg:scale-y-100
+          transform-gpu transition-all duration-300 ease-in-out text-center
+          ${isMenuOpen ? 'h-[200px] opacity-100' : 'h-0 opacity-0 overflow-hidden'}
+          lg:h-auto lg:opacity-100 lg:overflow-visible lg:text-left
           lg:flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-32 text-ls font-[500] tracking-wide
-          ${isMenuOpen ? 'mt-4' : ''}
+          w-full bg-[#013A83] lg:bg-transparent
         `}>
           {navItems.map((item) => (
-            <li key={item.path} className="transform transition-all duration-500 ease-in-out">
+            <li key={item.path} className={`
+              transform transition-all duration-300 ease-in-out
+              ${isMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0 pointer-events-none'}
+              lg:transform-none lg:opacity-100 lg:pointer-events-auto
+            `}>
               <Link
                 to={item.path}
                 className={`uppercase block py-3 lg:py-1 relative after:content-[''] after:absolute after:w-0 after:h-[2px] after:bg-white after:left-0 after:-bottom-2 after:transition-all after:duration-300 hover:after:w-full ${
