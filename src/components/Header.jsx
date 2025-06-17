@@ -8,7 +8,7 @@ function Header() {
   const navItems = [
     { path: '/', label: 'HOME' },
     { path: '/services', label: 'SERVICES' },
-    { path: '/blog', label: 'BLOG & FAQs' },
+    { path: '/blogs', label: 'BLOG & FAQs' },
     { path: '/contact', label: 'CONTACT' },
   ];
 

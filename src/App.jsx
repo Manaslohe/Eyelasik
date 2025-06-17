@@ -6,6 +6,8 @@ import Testimonial from "./components/Testimonial";
 import Services from "./components/Services";
 import Service1 from "./components/Service1";
 import AppointmentModal from "./components/AppointmentModal";
+import Header from "./components/Header";
+import Blogs from "./components/Blogs";
 
 function App() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -30,6 +32,7 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/services/lasik-refractive-surgery" element={<Service1 />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/blogs" element={<Blogs />} />
         </Routes>
       </Router>
     </div>
