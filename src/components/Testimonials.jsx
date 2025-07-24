@@ -21,27 +21,32 @@ const Testimonials = () => {
   const totalTestimonials = 7;
 
   return (
-    <div className="pt-0 pb-20 px-2 sm:px-4 text-white relative font-['Montserrat_Alternates']">
-      {/* Background image with reduced opacity */}
+    <div
+      className="pt-0 pb-20 px-2 sm:px-4 text-white relative font-['Montserrat_Alternates'] mt-0 md:-mt-[320px] bg-transparent overflow-visible"
+      style={{
+        position: 'relative',
+      }}
+    >
+      {/* Enlarged background image to overlap Footer */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-0"
+        className="pointer-events-none absolute inset-0 z-30 w-full h-[170%]"
         style={{
           backgroundImage: "url('/testimonial background.png')",
-          backgroundRepeat: 'repeat-y',
-          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: '100% 100%',
           backgroundPosition: 'top center',
-          opacity: 0.001
+          opacity: 1
         }}
       />
-      <div className="relative z-10">
+      <div className="relative z-40">
         <h1 className="text-center text-3xl sm:text-5xl md:text-6xl mb-8 sm:mb-16 font-medium font-['Montserrat_Alternates']">
           <span className="text-white">Their Words,</span>
           <span className="bg-gradient-to-r from-[#3a96ef] to-white text-transparent bg-clip-text"> Our Pride</span>
         </h1>
 
         <Carousel 
-          className="w-full sm:w-[90%] max-w-[1600px] mx-auto font-['Montserrat_Alternates']"
+          className="w-full sm:w-[95%] max-w-full mx-auto font-['Montserrat_Alternates']"
           opts={{
             align: "start",
             containScroll: "trimSnaps",

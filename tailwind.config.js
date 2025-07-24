@@ -44,6 +44,10 @@ export default {
         modalPop: {
           '0%': { transform: 'scale(0.9)', opacity: '0' },
           '100%': { transform: 'scale(1)', opacity: '1' }
+        },
+        modalShow: {
+          '0%': { opacity: 0, transform: 'scale(0.95)' },
+          '100%': { opacity: 1, transform: 'scale(1)' }
         }
       },
       animation: {
@@ -54,7 +58,8 @@ export default {
         fadeIn: 'fadeIn 0.3s ease-out',
         modalSlide: 'modalSlide 0.3s ease-out',
         modalIn: 'modalFade 0.3s ease-out',
-        modalContentIn: 'modalPop 0.3s ease-out'
+        modalContentIn: 'modalPop 0.3s ease-out',
+        modalShow: 'modalShow 0.2s ease-out'
       }
     },
   },

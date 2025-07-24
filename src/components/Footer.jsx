@@ -14,7 +14,7 @@ const Footer = () => {
       <AppointmentModal open={open} onClose={() => setOpen(false)} />
       <div className="w-full">
         <div
-          className="w-full"
+          className="w-full relative z-40"
           style={{
             background: 'linear-gradient(90deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.00) 100%)'
           }}

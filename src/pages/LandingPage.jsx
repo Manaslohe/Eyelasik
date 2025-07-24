@@ -40,22 +40,14 @@ const LandingPage = () => {
           </div>
           
           {/* Testimonials and Footer Section */}
-          <div
-            className="w-full"
-            style={{
-              backgroundImage: "url('/testimonial background.png')",
-              backgroundRepeat: 'repeat-y',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
-          >
+         
             <div className="w-full">
               <Testimonials />
               <div className="w-full h-0.5 bg-white/80" />
               <Footer />
             </div>
           </div>
-        </div>
+      
       </main>
     </div>
   );

@@ -60,14 +60,14 @@ const AchievementCard = ({ icon, title, description }) => {
   return (
     <>
       <div 
-        className="bg-white/15 backdrop-blur-sm border-white/30 rounded-2xl p-3 px-2 md:px-4 md:pb-4 md:pt-0 flex flex-col items-center text-center h-[160px] md:h-full border-2 cursor-pointer md:cursor-default"
+        className="bg-white/15 backdrop-blur-sm border-white/30 rounded-2xl p-3 px-2 md:px-1 md:pb-4 md:pt-0 flex flex-col items-center text-center h-[160px] md:h-full border-2 cursor-pointer md:cursor-default"
         onClick={() => window.innerWidth < 768 && setIsModalOpen(true)}
       >
         <div className="mt-0 mb-0 w-12 md:w-14 h-12 md:h-14">
           <img src={icon} alt={title} className="w-full h-full object-contain" />
         </div>
-        <h3 className="text-white font-bold text-xs md:text-sm mb-1">{title}</h3>
-        <p className="text-white/90 text-[11px] md:text-xs leading-tight line-clamp-3 md:line-clamp-none">{description}</p>
+        <h3 className="text-white font-medium text-xs md:text-[0.9rem] mb-1">{title}</h3>
+        <p className="text-white/90 text-[11px] md:text-[0.7rem] leading-tight line-clamp-3 md:line-clamp-none">{description}</p>
       </div>
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
@@ -76,7 +76,7 @@ const AchievementCard = ({ icon, title, description }) => {
             <img src={icon} alt={title} className="w-full h-full object-contain" />
           </div>
           <h3 className="text-white font-bold text-base mb-2">{title}</h3>
-          <p className="text-white/90 text-sm leading-relaxed">{description}</p>
+          <p className="text-white/90 text-sm  md:text-[0.8rem] leading-normal">{description}</p>
         </div>
       </Modal>
     </>
@@ -85,40 +85,32 @@ const AchievementCard = ({ icon, title, description }) => {
 
 const DoctorProfile = () => {
   return (
-    <div className="py-2 relative font-['Montserrat_Alternates']">
+    <div className="py-2 relative font-['Montserrat_Alternates'] w-[95vw] max-w-[95vw] mx-auto flex justify-center">
       {/* Background gradient image with overlap */}
       <div 
-        className="absolute z-[1] overflow-visible flex items-center justify-end"
+        className="absolute top-50 left-50 w-screen h-full z-[1] overflow-visible flex items-center justify-end pointer-events-none"
         style={{
-          pointerEvents: 'none',
-          top: '5vh', // Extend far above
-          bottom: '-100vh', // Extend further down
-          left: 0,
-          right: 0,
-          height: 'calc(100% + 100vh)', // Total height including overlap
-          margin: '-25vh 0', // Create negative space for overlap
-          transform: 'translateY(-10%)', // Fine-tune vertical position
+          height: 'full',
+          margin: 0,
+          transform: 'translateY(-10%)',
         }}
       >
         <img
           src="/profile-gradient.png"
           alt=""
           style={{
-            height: '100%', // Increased height
-            width: '100%', // Full width on mobile
-            opacity: 0.9,
-            objectFit: 'cover',
+            height: '200%',
+            width: '100vw',
+            opacity: 1,
+            objectFit: "contain",
             objectPosition: 'center right',
-            '@media (min-width: 768px)': {
-              width: '90%' // Original width on desktop
-            }
           }}
           className="block"
           draggable={false}
         />
       </div>
 
-      <div className="container mx-auto relative z-10">
+      <div className="w-full relative z-10">
         {/* Mobile-only spacer */}
         <div className="h-8 md:hidden"></div>
 
@@ -140,13 +132,13 @@ const DoctorProfile = () => {
           </div>
 
           {/* Desktop View */}
-          <div className="hidden md:block md:w-1/2 relative" style={{ marginLeft: '-80px' }}>
+          <div className="hidden md:block md:w-1/2 relative" style={{ marginLeft: '-70px' }}>
             <div className="relative z-10" style={{ marginTop: '-80px' }}>
               <img 
                 src="/doctor.png" 
                 alt="Dr. Shruti Sanghavi" 
                 className="w-full max-w-md h-auto object-cover"
-                style={{ minWidth: '1000px' }}
+                style={{ minWidth: '65vw' }}
               />
             </div>
           </div>
@@ -169,7 +161,7 @@ const DoctorProfile = () => {
             <hr className="border-t border-white/60 my-6 w-full" />
             
             {/* Achievements/credentials grid */}
-            <div className="w-[80%] md:w-full mx-auto">
+            <div className="w-[100%] md:w-full mx-auto">
               <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4">
                 {/* First 6 cards */}
                 <div className="contents sm:col-span-3 md:col-span-4">
